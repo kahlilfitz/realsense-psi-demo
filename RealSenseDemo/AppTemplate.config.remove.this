@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<appSettings>
+		<add key="PsiStoreName" value="realsense"/>
+		<add key="PsiStorePath" value="C:\Your\PSIStore\DIR"/>
+		<add key="CognitiveSubKey" value="yoursubscriptionkey"/>
+		<add key="CognitiveRegion" value="westus"/>
+	</appSettings>
+</configuration>

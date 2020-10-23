@@ -84,9 +84,11 @@ namespace RealSenseDemo
             PipelineProfile profileIntelPipe = intelPipe.Start();
             var streamDepth = profileIntelPipe.GetStream<VideoStreamProfile>(Stream.Depth);
             sicsDepth = streamDepth.GetIntrinsics();
+            Console.WriteLine($"Depth Stream: {sicsDepth.width}X{sicsDepth.height}");
 
             var streamRBG = profileIntelPipe.GetStream<VideoStreamProfile>(Stream.Color);
             sicsRBG = streamRBG.GetIntrinsics();
+            Console.WriteLine($"RBG Stream: {sicsRBG.width}X{sicsRBG.height}");
 
             Task.Run(() =>
             {

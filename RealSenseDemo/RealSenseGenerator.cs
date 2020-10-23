@@ -40,7 +40,7 @@ namespace RealSenseDemo
                 if (qDepth.PollForFrame(out Frame frDepth))
                 {
                     imgDepth.Resource.CopyFrom(frDepth.Data);
-                    imgDepthColor.Resource.CopyFrom(imgDepth.Resource.PseudoColorize((0, 3072)));
+                    imgDepthColor.Resource.CopyFrom(imgDepth.Resource.PseudoColorize((0, 2048)));
                     OutDepthImage.Post(imgDepth, msPipe.GetCurrentTime());
                     OutDepthImageColorized.Post(imgDepthColor, msPipe.GetCurrentTime());
                 }
@@ -79,9 +79,12 @@ namespace RealSenseDemo
             {
                 Console.WriteLine($"Sensor found: {sensor.Info[CameraInfo.Name]}");
             }
+            var cfg = new Config();
+            cfg.EnableStream(Stream.Depth);
+            cfg.EnableStream(Stream.Color, Format.Bgr8);
 
             intelPipe = new Intel.RealSense.Pipeline();
-            PipelineProfile profileIntelPipe = intelPipe.Start();
+            PipelineProfile profileIntelPipe = intelPipe.Start(cfg);
             var streamDepth = profileIntelPipe.GetStream<VideoStreamProfile>(Stream.Depth);
             sicsDepth = streamDepth.GetIntrinsics();
             Console.WriteLine($"Depth Stream: {sicsDepth.width}X{sicsDepth.height}");
